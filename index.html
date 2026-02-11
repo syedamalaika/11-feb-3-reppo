@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription & Billing Management</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Remix Icon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Sidebar Navigation (Simplified for UI Focus) -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"><i class="ri-stack-line"></i></div>
+                <span>SaaSify</span>
+            </div>
+            <nav>
+                <a href="#" class="nav-item"><i class="ri-dashboard-line"></i> Dashboard</a>
+                <a href="#" class="nav-item"><i class="ri-user-line"></i> Profile</a>
+                <a href="#" class="nav-item active"><i class="ri-bank-card-line"></i> Billing</a>
+                <a href="#" class="nav-item"><i class="ri-settings-line"></i> Settings</a>
+            </nav>
+            <div class="user-profile">
+                <img src="https://ui-avatars.com/api/?name=Alex+Morgan&background=random" alt="User">
+                <div class="user-info">
+                    <p class="name">Alex Morgan</p>
+                    <p class="email">alex@example.com</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            
+            <header>
+                <div>
+                    <h1>Billing & Subscription</h1>
+                    <p class="subtitle">Manage start plan, payment methods, and billing history.</p>
+                </div>
+            </header>
+
+            <!-- Current Subscription Section -->
+            <section class="current-sub-section">
+                <div class="section-header">
+                    <h2>Current Subscription</h2>
+                </div>
+                <div class="sub-card active-plan-card">
+                    <div class="plan-details">
+                        <span class="badge">Active Plan</span>
+                        <h3>Pro Plan</h3>
+                        <p class="plan-price">$29<span>/month</span></p>
+                        <p class="next-billing">Next billing date: <strong>October 24, 2026</strong></p>
+                    </div>
+                    <div class="plan-actions">
+                        <button class="btn btn-outline-danger" id="cancelPlanBtn">Cancel Plan</button>
+                        <button class="btn btn-primary" onclick="document.getElementById('plans-section').scrollIntoView({behavior: 'smooth'})">Upgrade Plan</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Payment Method Section -->
+            <section class="payment-method-section">
+                <div class="section-header">
+                    <h2>Payment Methods</h2>
+                    <button class="btn btn-sm btn-outline" id="addCardBtn"><i class="ri-add-line"></i> Add Layout</button>
+                </div>
+                <div class="cards-grid">
+                    <div class="credit-card primary">
+                        <div class="card-top">
+                            <span class="card-chip"></span>
+                            <i class="ri-visa-line card-brand"></i>
+                        </div>
+                        <div class="card-number">•••• •••• •••• 4242</div>
+                        <div class="card-bottom">
+                            <div class="card-holder">
+                                <span>Card Holder</span>
+                                <p>Alex Morgan</p>
+                            </div>
+                            <div class="card-expiry">
+                                <span>Expires</span>
+                                <p>12/28</p>
+                            </div>
+                        </div>
+                        <span class="default-badge">Default</span>
+                    </div>
+                    
+                    <!-- Dummy Card 2 -->
+                    <div class="credit-card secondary">
+                        <div class="card-top">
+                            <span class="card-chip"></span>
+                            <i class="ri-mastercard-line card-brand"></i>
+                        </div>
+                        <div class="card-number">•••• •••• •••• 8890</div>
+                        <div class="card-bottom">
+                            <div class="card-holder">
+                                <span>Card Holder</span>
+                                <p>Alex Morgan</p>
+                            </div>
+                            <div class="card-expiry">
+                                <span>Expires</span>
+                                <p>09/27</p>
+                            </div>
+                        </div>
+                        <button class="remove-card-btn"><i class="ri-delete-bin-line"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Plans Section -->
+            <section class="plans-section" id="plans-section">
+                <div class="section-header center">
+                    <h2>Available Plans</h2>
+                    <p>Choose the plan that suits your needs.</p>
+                    
+                    <div class="billing-toggle">
+                        <span class="toggle-label active" id="monthlyLabel">Monthly</span>
+                        <label class="switch">
+                            <input type="checkbox" id="billingCycleToggle">
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="toggle-label" id="yearlyLabel">Yearly <span class="badge-save">Save 20%</span></span>
+                    </div>
+                </div>
+
+                <div class="pricing-grid">
+                    <!-- Free Plan -->
+                    <div class="pricing-card">
+                        <div class="card-header">
+                            <h3>Free</h3>
+                            <p class="desc">For individuals just starting out.</p>
+                        </div>
+                        <div class="price-box">
+                            <span class="currency">$</span>
+                            <span class="amount" data-monthly="0" data-yearly="0">0</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <ul class="features-list">
+                            <li><i class="ri-check-line"></i> 1 Project</li>
+                            <li><i class="ri-check-line"></i> Basic Analytics</li>
+                            <li><i class="ri-check-line"></i> 24/7 Support</li>
+                            <li class="disabled"><i class="ri-close-line"></i> Advanced Integration</li>
+                        </ul>
+                        <button class="btn btn-block btn-outline">Current Plan</button> <!-- Logic will change dynamically -->
+                    </div>
+
+                    <!-- Pro Plan -->
+                    <div class="pricing-card popular">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="card-header">
+                            <h3>Pro</h3>
+                            <p class="desc">For professionals and small teams.</p>
+                        </div>
+                        <div class="price-box">
+                            <span class="currency">$</span>
+                            <span class="amount" data-monthly="29" data-yearly="24">29</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <ul class="features-list">
+                            <li><i class="ri-check-line"></i> 10 Projects</li>
+                            <li><i class="ri-check-line"></i> Advanced Analytics</li>
+                            <li><i class="ri-check-line"></i> Priority Support</li>
+                            <li><i class="ri-check-line"></i> Advanced Integration</li>
+                        </ul>
+                        <button class="btn btn-block btn-primary select-plan-btn" data-plan="Pro">Current Plan</button>
+                    </div>
+
+                    <!-- Business Plan -->
+                    <div class="pricing-card">
+                        <div class="card-header">
+                            <h3>Business</h3>
+                            <p class="desc">For large teams and enterprises.</p>
+                        </div>
+                        <div class="price-box">
+                            <span class="currency">$</span>
+                            <span class="amount" data-monthly="99" data-yearly="79">99</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <ul class="features-list">
+                            <li><i class="ri-check-line"></i> Unlimited Projects</li>
+                            <li><i class="ri-check-line"></i> Custom Analytics</li>
+                            <li><i class="ri-check-line"></i> Dedicated Manager</li>
+                            <li><i class="ri-check-line"></i> API Access</li>
+                        </ul>
+                        <button class="btn btn-block btn-outline select-plan-btn" data-plan="Business">Choose Plan</button>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Billing History Section -->
+             <section class="billing-history-section">
+                <div class="section-header">
+                    <h2>Billing History</h2>
+                    <button class="btn btn-text">Download All</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Invoice ID</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#INV-2024-001</td>
+                                <td>Oct 24, 2026</td>
+                                <td>$29.00</td>
+                                <td><span class="status-badge paid">Paid</span></td>
+                                <td><button class="btn-icon"><i class="ri-download-line"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td>#INV-2024-002</td>
+                                <td>Sep 24, 2026</td>
+                                <td>$29.00</td>
+                                <td><span class="status-badge paid">Paid</span></td>
+                                <td><button class="btn-icon"><i class="ri-download-line"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td>#INV-2024-003</td>
+                                <td>Aug 24, 2026</td>
+                                <td>$29.00</td>
+                                <td><span class="status-badge failed">Failed</span></td>
+                                <td><button class="btn-icon"><i class="ri-download-line"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modals -->
+    
+    <!-- Cancel Modal -->
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Cancel Subscription?</h3>
+                <button class="close-modal"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to cancel your <strong>Pro Plan</strong>? You will lose access to premium features at the end of your current billing cycle.</p>
+                <div class="warning-box">
+                    <i class="ri-alert-line"></i>
+                    <span>This action cannot be undone.</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline close-modal">Keep Subscription</button>
+                <button class="btn btn-danger" id="confirmCancel">Yes, Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upgrade Modal -->
+    <div class="modal-overlay" id="upgradeModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Confirm Upgrade</h3>
+                <button class="close-modal"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>You are upgrading to the <strong id="upgradePlanName">Business</strong> plan.</p>
+                <p>New Price: <strong id="upgradePlanPrice">$99/month</strong></p>
+                <p class="note">You will be charged immediately for the prorated amount.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline close-modal">Cancel</button>
+                <button class="btn btn-primary" id="confirmUpgrade">Confirm & Pay</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Card Modal -->
+    <div class="modal-overlay" id="addCardModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add New Card</h3>
+                <button class="close-modal"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="addCardForm">
+                    <div class="form-group">
+                        <label>Card Number</label>
+                        <input type="text" placeholder="0000 0000 0000 0000" class="input-field">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Expiry Date</label>
+                            <input type="text" placeholder="MM/YY" class="input-field">
+                        </div>
+                        <div class="form-group">
+                            <label>CVC</label>
+                            <input type="text" placeholder="123" class="input-field">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Cardholder Name</label>
+                        <input type="text" placeholder="John Doe" class="input-field">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline close-modal">Cancel</button>
+                <button class="btn btn-primary" id="saveCardBtn">Save Card</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
